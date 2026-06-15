@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, Image, Button, ScrollView } from '@tarojs/components';
+import { View, Text, Image, Button, ScrollView, Picker } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import styles from './index.module.scss';
 import RoomCard from '@/components/RoomCard';
@@ -28,6 +28,7 @@ const BookingPage: React.FC = () => {
   }, [selectedRoom, days]);
 
   const currentBooking = bookings.find(b => b.status === 'inProgress');
+  const currentInStorePet = pets.find(p => p.id === currentBooking?.petId) || pets[0];
 
   const handleSelectPet = (pet: Pet) => {
     setSelectedPet(pet);
@@ -37,15 +38,24 @@ const BookingPage: React.FC = () => {
     setSelectedRoom(room);
   };
 
-  const handleDateChange = (type: 'checkIn' | 'checkOut', value: string) => {
-    if (type === 'checkIn') {
-      setCheckInDate(value);
-      if (dayjs(value).isAfter(dayjs(checkOutDate))) {
-        setCheckOutDate(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
-      }
-    } else {
-      setCheckOutDate(value);
+  const handleCheckInChange = (e: any) => {
+    const value = e.detail.value;
+    setCheckInDate(value);
+    if (dayjs(value).isAfter(dayjs(checkOutDate))) {
+      setCheckOutDate(dayjs(value).add(1, 'day').format('YYYY-MM-DD'));
     }
+  };
+
+  const handleCheckOutChange = (e: any) => {
+    const value = e.detail.value;
+    if (dayjs(value).isBefore(dayjs(checkInDate))) {
+      Taro.showToast({
+        title: '离店日期不能早于入住日期',
+        icon: 'none'
+      });
+      return;
+    }
+    setCheckOutDate(value);
   };
 
   const handleSubmit = () => {
@@ -105,7 +115,7 @@ const BookingPage: React.FC = () => {
               <View className={styles.bookingPet}>
                 <Image
                   className={styles.bookingPetAvatar}
-                  src={selectedPet.avatar}
+                  src={currentInStorePet.avatar}
                   mode="aspectFill"
                 />
                 <View>
@@ -158,25 +168,42 @@ const BookingPage: React.FC = () => {
         <Text className={styles.sectionTitle}>
           <Text className={styles.sectionIcon}>📅</Text>
           寄养日期
+          <Text style={{ fontSize: '22rpx', color: '#86909c', fontWeight: 'normal', marginLeft: '12rpx' }}>
+            点击日期可修改
+          </Text>
         </Text>
         <View className={styles.dateCard}>
           <View className={styles.dateRow}>
-            <View className={styles.dateItem}>
-              <Text className={styles.dateLabel}>入住日期</Text>
-              <Text className={styles.dateValue}>{checkIn.date}</Text>
-              <Text className={styles.dateSub}>{checkIn.weekday}</Text>
-            </View>
+            <Picker
+              mode="date"
+              value={checkInDate}
+              start={dayjs().format('YYYY-MM-DD')}
+              onChange={handleCheckInChange}
+            >
+              <View className={styles.dateItem}>
+                <Text className={styles.dateLabel}>入住日期</Text>
+                <Text className={styles.dateValue}>{checkIn.date}</Text>
+                <Text className={styles.dateSub}>{checkIn.weekday}</Text>
+              </View>
+            </Picker>
             <View className={styles.dateDivider}>
               <Text className={styles.dateArrow}>→</Text>
               <View>
                 <Text className={styles.daysBadge}>共 {days} 晚</Text>
               </View>
             </View>
-            <View className={styles.dateItem}>
-              <Text className={styles.dateLabel}>离店日期</Text>
-              <Text className={styles.dateValue}>{checkOut.date}</Text>
-              <Text className={styles.dateSub}>{checkOut.weekday}</Text>
-            </View>
+            <Picker
+              mode="date"
+              value={checkOutDate}
+              start={dayjs(checkInDate).add(1, 'day').format('YYYY-MM-DD')}
+              onChange={handleCheckOutChange}
+            >
+              <View className={styles.dateItem}>
+                <Text className={styles.dateLabel}>离店日期</Text>
+                <Text className={styles.dateValue}>{checkOut.date}</Text>
+                <Text className={styles.dateSub}>{checkOut.weekday}</Text>
+              </View>
+            </Picker>
           </View>
         </View>
       </View>

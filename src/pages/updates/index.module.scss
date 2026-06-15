@@ -109,18 +109,51 @@
 }
 
 .summaryTitle {
-  font-size: $font-size-md;
+  font-size: $font-size-lg;
   font-weight: $font-weight-semibold;
   color: $color-text-primary;
   margin-bottom: $spacing-md;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.summaryTitleLeft {
+  display: flex;
+  align-items: center;
   gap: $spacing-sm;
+}
+
+.summaryUpdateTime {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  font-weight: normal;
+}
+
+.moodRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: linear-gradient(135deg, rgba(54, 211, 153, 0.1) 0%, rgba(96, 165, 250, 0.1) 100%);
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+}
+
+.moodEmoji {
+  font-size: 36rpx;
+}
+
+.moodText {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
 }
 
 .summaryGrid {
   display: flex;
   gap: $spacing-md;
+  margin-bottom: $spacing-md;
 }
 
 .summaryItem {
@@ -146,6 +179,134 @@
   font-size: $font-size-xs;
   color: $color-text-tertiary;
   margin-top: 4rpx;
+}
+
+.todaySection {
+  margin-top: $spacing-md;
+}
+
+.todaySectionTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.todaySectionIcon {
+  font-size: $font-size-md;
+}
+
+.mealList {
+  background: $color-bg-page;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.mealItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md;
+  border-bottom: 1rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mealTime {
+  width: 100rpx;
+  font-size: $font-size-sm;
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+  flex-shrink: 0;
+}
+
+.mealContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.mealFood {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.mealNote {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  @include text-ellipsis;
+}
+
+.mealAmount {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  flex-shrink: 0;
+  margin-left: $spacing-sm;
+}
+
+.poopInfo {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+}
+
+.poopItem {
+  flex: 1;
+  text-align: center;
+}
+
+.poopValue {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.poopLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.photoPreview {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.photoPreviewItem {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: $radius-md;
+  background: $color-bg-hover;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.photoMore {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: $radius-md;
+  background: $color-bg-page;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.todayNotes {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
 }
 
 .timeline {

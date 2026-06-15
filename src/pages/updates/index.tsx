@@ -15,6 +15,20 @@ const UpdatesPage: React.FC = () => {
   const records = dailyRecords.filter(r => r.bookingId === currentBooking?.id);
 
   const todayRecord = records[0];
+  const historyRecords = records.slice(1);
+
+  const moodTextMap: Record<string, string> = {
+    happy: '今天心情很好😊',
+    normal: '今天状态稳定😐',
+    sad: '今天有点不开心😢',
+    anxious: '今天稍微有些焦虑😰'
+  };
+
+  const appetiteTextMap: Record<string, string> = {
+    good: '胃口很好',
+    normal: '食欲正常',
+    poor: '胃口稍差'
+  };
 
   const handleAddService = (service: string) => {
     Taro.showModal({
@@ -81,34 +95,121 @@ const UpdatesPage: React.FC = () => {
       <View className={styles.content}>
         {activeTab === 'records' ? (
           <View>
-            <View className={styles.sectionTitle}>
-              <Text>今日概览</Text>
-            </View>
-
             {todayRecord ? (
-              <View className={styles.todaySummary}>
-                <Text className={styles.summaryTitle}>
-                  📅 {todayRecord.date}
-                  <Text style={{ marginLeft: 'auto', fontSize: '24rpx', color: '#86909c', fontWeight: 'normal' }}>
+              <View>
+                <View className={styles.sectionTitle}>
+                  <Text>📋 今日日报 · {todayRecord.date}</Text>
+                  <Text style={{ fontSize: '22rpx', color: '#86909c', fontWeight: 'normal' }}>
                     更新于 {todayRecord.createTime.split(' ')[1]}
                   </Text>
-                </Text>
-                <View className={styles.summaryGrid}>
-                  <View className={styles.summaryItem}>
-                    <Text className={styles.summaryIcon}>🍖</Text>
-                    <Text className={styles.summaryValue}>{todayRecord.meals.length}餐</Text>
-                    <Text className={styles.summaryLabel}>饮食</Text>
+                </View>
+
+                <View className={styles.todaySummary}>
+                  <View className={styles.moodRow}>
+                    <Text className={styles.moodEmoji}>
+                      {todayRecord.mood === 'happy' ? '😊' : todayRecord.mood === 'normal' ? '😐' : todayRecord.mood === 'sad' ? '😢' : '😰'}
+                    </Text>
+                    <Text className={styles.moodText}>
+                      {moodTextMap[todayRecord.mood]} · {appetiteTextMap[todayRecord.appetite]} · 饮水{todayRecord.waterIntake}
+                    </Text>
                   </View>
-                  <View className={styles.summaryItem}>
-                    <Text className={styles.summaryIcon}>💩</Text>
-                    <Text className={styles.summaryValue}>{todayRecord.poopTimes}次</Text>
-                    <Text className={styles.summaryLabel}>排便</Text>
+
+                  <View className={styles.summaryGrid}>
+                    <View className={styles.summaryItem}>
+                      <Text className={styles.summaryIcon}>🍖</Text>
+                      <Text className={styles.summaryValue}>{todayRecord.meals.length}餐</Text>
+                      <Text className={styles.summaryLabel}>已喂食</Text>
+                    </View>
+                    <View className={styles.summaryItem}>
+                      <Text className={styles.summaryIcon}>💩</Text>
+                      <Text className={styles.summaryValue}>{todayRecord.poopTimes}次</Text>
+                      <Text className={styles.summaryLabel}>排便</Text>
+                    </View>
+                    <View className={styles.summaryItem}>
+                      <Text className={styles.summaryIcon}>�</Text>
+                      <Text className={styles.summaryValue}>{todayRecord.peeTimes}次</Text>
+                      <Text className={styles.summaryLabel}>排尿</Text>
+                    </View>
+                    <View className={styles.summaryItem}>
+                      <Text className={styles.summaryIcon}>�🚶</Text>
+                      <Text className={styles.summaryValue}>{todayRecord.walkTimes}次</Text>
+                      <Text className={styles.summaryLabel}>遛弯</Text>
+                    </View>
                   </View>
-                  <View className={styles.summaryItem}>
-                    <Text className={styles.summaryIcon}>🚶</Text>
-                    <Text className={styles.summaryValue}>{todayRecord.walkTimes}次</Text>
-                    <Text className={styles.summaryLabel}>遛弯</Text>
+
+                  <View className={styles.todaySection}>
+                    <Text className={styles.todaySectionTitle}>
+                      <Text className={styles.todaySectionIcon}>🍽️</Text>
+                      饮食记录
+                    </Text>
+                    <View className={styles.mealList}>
+                      {todayRecord.meals.map((meal, index) => (
+                        <View key={index} className={styles.mealItem}>
+                          <Text className={styles.mealTime}>{meal.time}</Text>
+                          <View className={styles.mealContent}>
+                            <Text className={styles.mealFood}>{meal.foodType}</Text>
+                            {meal.note && <Text className={styles.mealNote}>{meal.note}</Text>}
+                          </View>
+                          <Text className={styles.mealAmount}>{meal.amount}</Text>
+                        </View>
+                      ))}
+                    </View>
                   </View>
+
+                  <View className={styles.todaySection}>
+                    <Text className={styles.todaySectionTitle}>
+                      <Text className={styles.todaySectionIcon}>💩</Text>
+                      排泄情况
+                    </Text>
+                    <View className={styles.poopInfo}>
+                      <View className={styles.poopItem}>
+                        <Text className={styles.poopValue}>{todayRecord.poopTimes} 次</Text>
+                        <Text className={styles.poopLabel}>排便</Text>
+                      </View>
+                      <View className={styles.poopItem}>
+                        <Text className={styles.poopValue}>{todayRecord.peeTimes} 次</Text>
+                        <Text className={styles.poopLabel}>排尿</Text>
+                      </View>
+                      <View className={styles.poopItem}>
+                        <Text className={styles.poopValue}>{todayRecord.poopStatus}</Text>
+                        <Text className={styles.poopLabel}>便便状态</Text>
+                      </View>
+                    </View>
+                  </View>
+
+                  {todayRecord.photos.length > 0 && (
+                    <View className={styles.todaySection}>
+                      <Text className={styles.todaySectionTitle}>
+                        <Text className={styles.todaySectionIcon}>📷</Text>
+                        今日照片
+                      </Text>
+                      <View className={styles.photoPreview}>
+                        {todayRecord.photos.slice(0, 3).map((photo, index) => (
+                          <Image
+                            key={index}
+                            className={styles.photoPreviewItem}
+                            src={photo}
+                            mode="aspectFill"
+                          />
+                        ))}
+                        {todayRecord.photos.length > 3 && (
+                          <View className={styles.photoMore}>
+                            +{todayRecord.photos.length - 3} 张
+                          </View>
+                        )}
+                      </View>
+                    </View>
+                  )}
+
+                  {todayRecord.notes && (
+                    <View className={styles.todaySection}>
+                      <Text className={styles.todaySectionTitle}>
+                        <Text className={styles.todaySectionIcon}>📝</Text>
+                        店员备注
+                      </Text>
+                      <Text className={styles.todayNotes}>{todayRecord.notes}</Text>
+                    </View>
+                  )}
                 </View>
               </View>
             ) : (
@@ -118,16 +219,20 @@ const UpdatesPage: React.FC = () => {
               </View>
             )}
 
-            <View className={styles.sectionTitle}>
-              <Text>历史记录</Text>
-              <Text style={{ fontSize: '24rpx', color: '#86909c', fontWeight: 'normal' }}>
-                共 {records.length} 条
-              </Text>
-            </View>
+            {historyRecords.length > 0 && (
+              <View>
+                <View className={styles.sectionTitle}>
+                  <Text>📜 历史记录</Text>
+                  <Text style={{ fontSize: '24rpx', color: '#86909c', fontWeight: 'normal' }}>
+                    共 {historyRecords.length} 条
+                  </Text>
+                </View>
 
-            {records.map(record => (
-              <DailyRecordCard key={record.id} record={record} />
-            ))}
+                {historyRecords.map(record => (
+                  <DailyRecordCard key={record.id} record={record} />
+                ))}
+              </View>
+            )}
           </View>
         ) : (
           <View>

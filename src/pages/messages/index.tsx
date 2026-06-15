@@ -52,9 +52,45 @@ const MessagesPage: React.FC = () => {
       )
     );
 
-    Taro.showToast({
-      title: '查看消息详情',
-      icon: 'none'
+    const typeTextMap: Record<string, string> = {
+      system: '系统通知',
+      service: '服务消息',
+      alert: '异常提醒',
+      chat: '店员消息'
+    };
+
+    let confirmText = '我知道了';
+    let showCancel = false;
+    let cancelText = '';
+
+    if (message.type === 'alert') {
+      confirmText = '立即联系';
+      showCancel = true;
+      cancelText = '稍后处理';
+    } else if (message.type === 'chat') {
+      confirmText = '回复';
+      showCancel = true;
+      cancelText = '关闭';
+    }
+
+    Taro.showModal({
+      title: `【${typeTextMap[message.type]}】${message.title}`,
+      content: `${message.content}\n\n发送时间：${message.time}`,
+      confirmText,
+      showCancel,
+      cancelText,
+      success: (res) => {
+        if (res.confirm) {
+          if (message.type === 'alert') {
+            handleEmergencyContact();
+          } else if (message.type === 'chat') {
+            Taro.showToast({
+              title: '打开聊天窗口...',
+              icon: 'none'
+            });
+          }
+        }
+      }
     });
   };
 
@@ -69,19 +105,30 @@ const MessagesPage: React.FC = () => {
   };
 
   const handleEmergencyContact = () => {
-    Taro.showModal({
-      title: '紧急联系',
-      content: '是否立即拨打寄养店紧急电话？',
-      confirmText: '拨打',
+    Taro.showActionSheet({
+      itemList: ['拨打紧急电话', '在线联系店员', '查看异常消息详情'],
       success: (res) => {
-        if (res.confirm) {
+        if (res.tapIndex === 0) {
           Taro.showToast({
-            title: '正在拨打...',
+            title: '正在拨打紧急电话...',
             icon: 'none'
           });
+        } else if (res.tapIndex === 1) {
+          Taro.showToast({
+            title: '正在连接店员...',
+            icon: 'none'
+          });
+        } else if (res.tapIndex === 2 && alertMessages.length > 0) {
+          handleMessageClick(alertMessages[0]);
         }
       }
     });
+  };
+
+  const handleAlertCardClick = () => {
+    if (alertMessages.length > 0) {
+      handleMessageClick(alertMessages[0]);
+    }
   };
 
   const handleQuickChat = () => {
@@ -106,16 +153,33 @@ const MessagesPage: React.FC = () => {
       </View>
 
       {alertMessages.length > 0 && (
-        <View className={styles.alertCard}>
+        <View className={styles.alertCard} onClick={handleAlertCardClick}>
           <Text className={styles.alertTitle}>
-            ⚠️ 异常提醒
+            ⚠️ 异常提醒 · 点击查看详情
           </Text>
           <Text className={styles.alertContent}>
             {alertMessages[0].content}
           </Text>
-          <Button className={styles.alertBtn} onClick={handleEmergencyContact}>
-            立即联系店员
-          </Button>
+          <View style={{ display: 'flex', gap: '16rpx' }}>
+            <Button
+              className={styles.alertBtn}
+              onClick={(e) => {
+                e.stopPropagation && e.stopPropagation();
+                handleEmergencyContact();
+              }}
+            >
+              立即联系店员
+            </Button>
+            <Button
+              className={styles.alertViewBtn}
+              onClick={(e) => {
+                e.stopPropagation && e.stopPropagation();
+                handleAlertCardClick();
+              }}
+            >
+              查看详情
+            </Button>
+          </View>
         </View>
       )}
 

@@ -186,6 +186,22 @@
   }
 }
 
+.alertViewBtn {
+  @include button-reset;
+  height: $button-height-sm;
+  padding: 0 $spacing-lg;
+  background: $color-bg-card;
+  color: $color-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-button;
+  border: 2rpx solid $color-primary;
+
+  &:active {
+    background: $color-bg-tag;
+  }
+}
+
 .sectionHeader {
   display: flex;
   justify-content: space-between;
