@@ -1,0 +1,325 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: 180rpx;
+}
+
+.header {
+  background: $gradient-soft;
+  padding: $spacing-lg $page-padding;
+  padding-bottom: 48rpx;
+}
+
+.petInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.petAvatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: $radius-round;
+  background: $color-bg-hover;
+  border: 4rpx solid $color-bg-card;
+  box-shadow: $shadow-card;
+}
+
+.petDetail {
+  flex: 1;
+}
+
+.petName {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.bookingInfo {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.daysBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 20rpx;
+  background: rgba(255, 122, 69, 0.1);
+  color: $color-primary;
+  font-size: $font-size-sm;
+  border-radius: $radius-button;
+  font-weight: $font-weight-medium;
+}
+
+.tabs {
+  display: flex;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: 8rpx;
+  margin: 0 $page-padding;
+  margin-top: -32rpx;
+  position: relative;
+  z-index: 1;
+  box-shadow: $shadow-card;
+}
+
+.tabItem {
+  flex: 1;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  border-radius: $radius-md;
+  transition: all $transition-base;
+
+  &.active {
+    background: $gradient-primary;
+    color: $color-text-white;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.content {
+  padding: 0 $page-padding;
+  padding-top: $spacing-md;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: $spacing-lg 0 $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todaySummary {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+}
+
+.summaryTitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.summaryGrid {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.summaryItem {
+  flex: 1;
+  text-align: center;
+  padding: $spacing-md 0;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+}
+
+.summaryIcon {
+  font-size: 40rpx;
+  margin-bottom: $spacing-xs;
+}
+
+.summaryValue {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+}
+
+.summaryLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: 4rpx;
+}
+
+.timeline {
+  position: relative;
+  padding-left: $spacing-lg;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10rpx;
+  top: 10rpx;
+  bottom: 10rpx;
+  width: 4rpx;
+  background: $color-border;
+}
+
+.timelineItem {
+  position: relative;
+  padding-bottom: $spacing-lg;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.timelineDot {
+  position: absolute;
+  left: -40rpx;
+  top: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: $radius-round;
+  background: $color-primary;
+  border: 4rpx solid $color-bg-page;
+}
+
+.timelineTime {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-xs;
+}
+
+.timelineContent {
+  background: $color-bg-card;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.timelineText {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  line-height: $line-height-normal;
+}
+
+.serviceBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $color-bg-card;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  padding: $spacing-md $page-padding;
+  padding-bottom: calc(#{$spacing-md} + env(safe-area-inset-bottom));
+  display: flex;
+  gap: $spacing-md;
+  z-index: 100;
+}
+
+.serviceBtn {
+  @include button-reset;
+  flex: 1;
+  height: $button-height-lg;
+  background: $color-bg-page;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  border-radius: $radius-button;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rpx;
+
+  &:active {
+    background: $color-bg-hover;
+  }
+}
+
+.serviceIcon {
+  font-size: 32rpx;
+}
+
+.serviceText {
+  font-size: $font-size-xs;
+}
+
+.contactBtn {
+  @include button-reset;
+  flex: 1.5;
+  height: $button-height-lg;
+  background: $gradient-primary;
+  color: $color-text-white;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-button;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.photoSection {
+  margin-top: $spacing-lg;
+}
+
+.photoTitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.photoScroll {
+  white-space: nowrap;
+}
+
+.photoCard {
+  display: inline-block;
+  width: 280rpx;
+  margin-right: $spacing-md;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  vertical-align: top;
+  white-space: normal;
+}
+
+.photoImg {
+  width: 100%;
+  height: 200rpx;
+  background: $color-bg-hover;
+}
+
+.photoDesc {
+  padding: $spacing-md;
+}
+
+.photoDate {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+  margin-bottom: 4rpx;
+}
+
+.photoNote {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  @include text-ellipsis;
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl 0;
+  color: $color-text-tertiary;
+}
+
+.emptyIcon {
+  font-size: 80rpx;
+  margin-bottom: $spacing-md;
+}
+
+.emptyText {
+  font-size: $font-size-sm;
+}

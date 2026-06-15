@@ -1,0 +1,337 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: 200rpx;
+}
+
+.header {
+  background: $gradient-primary;
+  padding: $spacing-xl $page-padding;
+  color: $color-text-white;
+  text-align: center;
+}
+
+.totalLabel {
+  font-size: $font-size-sm;
+  opacity: 0.9;
+  margin-bottom: $spacing-xs;
+}
+
+.totalAmount {
+  font-size: 64rpx;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  margin-bottom: $spacing-sm;
+}
+
+.totalAmount .currency {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
+  margin-right: 8rpx;
+}
+
+.bookingInfo {
+  font-size: $font-size-sm;
+  opacity: 0.9;
+}
+
+.summaryCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  margin: 0 $page-padding;
+  margin-top: -40rpx;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+  position: relative;
+  z-index: 1;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+    padding-top: $spacing-md;
+    margin-top: $spacing-sm;
+    border-top: 1rpx solid $color-divider;
+  }
+}
+
+.summaryLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.summaryValue {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+}
+
+.summaryTotal {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-price;
+}
+
+.section {
+  padding: 0 $page-padding;
+  margin-top: $spacing-lg;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionIcon {
+  font-size: $font-size-lg;
+  margin-right: $spacing-xs;
+}
+
+.expenseList {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  overflow: hidden;
+}
+
+.expenseItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.expenseIcon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: $radius-md;
+  background: $color-bg-page;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  margin-right: $spacing-md;
+  flex-shrink: 0;
+}
+
+.expenseInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.expenseName {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.expenseDesc {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.expensePrice {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.priceNum {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.priceQty {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: 4rpx;
+}
+
+.addServiceSection {
+  margin-top: $spacing-lg;
+}
+
+.serviceGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.serviceCard {
+  width: calc(50% - 12rpx);
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+  box-sizing: border-box;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.serviceIcon {
+  font-size: 48rpx;
+  margin-bottom: $spacing-sm;
+}
+
+.serviceName {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.serviceDesc {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-bottom: $spacing-sm;
+  line-height: $line-height-tight;
+}
+
+.servicePrice {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-price;
+}
+
+.servicePrice .unit {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-normal;
+  color: $color-text-tertiary;
+}
+
+.addBtn {
+  @include button-reset;
+  width: 100%;
+  height: 56rpx;
+  margin-top: $spacing-sm;
+  background: $gradient-primary;
+  color: $color-text-white;
+  font-size: $font-size-xs;
+  border-radius: $radius-button;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.extensionSection {
+  margin-top: $spacing-lg;
+}
+
+.extensionCard {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  border: 2rpx solid rgba(96, 165, 250, 0.2);
+}
+
+.extensionTitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.extensionDesc {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-md;
+  line-height: $line-height-normal;
+}
+
+.extensionBtn {
+  @include button-reset;
+  height: $button-height-sm;
+  padding: 0 $spacing-lg;
+  background: $color-info;
+  color: $color-text-white;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-button;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $color-bg-card;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  padding: $spacing-md $page-padding;
+  padding-bottom: calc(#{$spacing-md} + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  z-index: 100;
+}
+
+.bottomPrice {
+  flex: 1;
+}
+
+.bottomPriceLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: 4rpx;
+}
+
+.bottomPriceValue {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  color: $color-price;
+}
+
+.bottomPriceValue .unit {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+}
+
+.payBtn {
+  @include button-reset;
+  min-width: 240rpx;
+  height: $button-height-lg;
+  background: $gradient-primary;
+  color: $color-text-white;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-button;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.categoryTitle {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  padding: $spacing-md $spacing-lg 0;
+  background: $color-bg-card;
+}

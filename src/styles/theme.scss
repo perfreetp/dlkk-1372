@@ -1,0 +1,43 @@
+// ============================================
+// 主题配色变量（宠物寄养 App）
+// ============================================
+
+// 品牌主题色：暖橙色 - 温暖、活力、亲和力
+$color-primary: #ff7a45;
+$color-primary-light: #ffa270;
+$color-primary-dark: #e8632e;
+
+// 功能色
+$color-success: #36d399;
+$color-warning: #ffb547;
+$color-error: #f87272;
+$color-info: #60a5fa;
+
+// 业务辅助色
+$color-mint: #36d399;
+$color-sky: #60a5fa;
+$color-purple: #a78bfa;
+
+// 背景色
+$color-bg-page: #fff8f5;
+$color-bg-card: #ffffff;
+$color-bg-hover: #fff0eb;
+$color-bg-tag: #fff0eb;
+
+// 文本色
+$color-text-primary: #1d2129;
+$color-text-secondary: #4e5969;
+$color-text-tertiary: #86909c;
+$color-text-disabled: #c9cdd4;
+$color-text-white: #ffffff;
+
+// 边框色
+$color-border: #f2f3f5;
+$color-divider: #f7f8fa;
+
+// 价格色
+$color-price: #ff5722;
+
+// 渐变
+$gradient-primary: linear-gradient(135deg, #ff7a45 0%, #ffa270 100%);
+$gradient-soft: linear-gradient(180deg, #fff8f5 0%, #ffffff 100%);

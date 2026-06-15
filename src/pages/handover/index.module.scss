@@ -1,0 +1,378 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: 180rpx;
+}
+
+.header {
+  background: $gradient-soft;
+  padding: $spacing-lg $page-padding;
+  padding-bottom: 48rpx;
+}
+
+.title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.subtitle {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-md $spacing-lg;
+  margin: 0 $page-padding;
+  margin-top: -32rpx;
+  box-shadow: $shadow-card;
+  position: relative;
+  z-index: 1;
+}
+
+.statusLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.statusDot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: $radius-round;
+  background: $color-warning;
+
+  &.completed {
+    background: $color-success;
+  }
+}
+
+.statusText {
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+}
+
+.progressText {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.section {
+  padding: 0 $page-padding;
+  margin-top: $spacing-lg;
+}
+
+.card {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.cardIcon {
+  font-size: $font-size-xl;
+}
+
+.editBtn {
+  @include button-reset;
+  font-size: $font-size-sm;
+  color: $color-primary;
+  padding: $spacing-xs $spacing-md;
+  background: $color-bg-tag;
+  border-radius: $radius-button;
+}
+
+.formItem {
+  display: flex;
+  padding: $spacing-md 0;
+  border-bottom: 1rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.formLabel {
+  width: 160rpx;
+  flex-shrink: 0;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  padding-top: 4rpx;
+}
+
+.formValue {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  line-height: $line-height-normal;
+}
+
+.emptyValue {
+  color: $color-text-disabled;
+}
+
+.feedingList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.feedingItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+}
+
+.feedingTime {
+  width: 120rpx;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+}
+
+.feedingDetails {
+  flex: 1;
+}
+
+.feedingFood {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.feedingAmount {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.addBtn {
+  @include button-reset;
+  width: 100%;
+  height: $button-height-sm;
+  border: 2rpx dashed $color-border;
+  border-radius: $radius-md;
+  color: $color-text-tertiary;
+  font-size: $font-size-sm;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  margin-top: $spacing-sm;
+}
+
+.medicationItem {
+  display: flex;
+  align-items: flex-start;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-sm;
+}
+
+.medIcon {
+  font-size: 36rpx;
+  margin-right: $spacing-md;
+}
+
+.medInfo {
+  flex: 1;
+}
+
+.medName {
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.medDetail {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+}
+
+.walkInfo {
+  display: flex;
+  gap: $spacing-lg;
+}
+
+.walkStat {
+  flex: 1;
+  text-align: center;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+}
+
+.walkValue {
+  font-size: $font-size-xl;
+  font-weight: $font-bold;
+  color: $color-primary;
+  margin-bottom: 4rpx;
+}
+
+.walkLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.photoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.photoItem {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: $radius-md;
+  overflow: hidden;
+  position: relative;
+}
+
+.photoImg {
+  width: 100%;
+  height: 100%;
+  background: $color-bg-hover;
+}
+
+.addPhoto {
+  width: 200rpx;
+  height: 200rpx;
+  border: 2rpx dashed $color-border;
+  border-radius: $radius-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  color: $color-text-tertiary;
+  font-size: $font-size-xs;
+}
+
+.addPhotoIcon {
+  font-size: 48rpx;
+}
+
+.checklistCategory {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+  margin: $spacing-md 0 $spacing-sm;
+  padding-left: $spacing-sm;
+  border-left: 6rpx solid $color-primary;
+}
+
+.checklistItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: $radius-sm;
+  border: 3rpx solid $color-border;
+  margin-right: $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &.checked {
+    background: $color-primary;
+    border-color: $color-primary;
+    color: $color-text-white;
+    font-size: 24rpx;
+  }
+}
+
+.itemName {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+}
+
+.itemQty {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $color-bg-card;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  padding: $spacing-md $page-padding;
+  padding-bottom: calc(#{$spacing-md} + env(safe-area-inset-bottom));
+  display: flex;
+  gap: $spacing-md;
+  z-index: 100;
+}
+
+.secondaryBtn {
+  @include button-reset;
+  flex: 1;
+  height: $button-height-lg;
+  background: $color-bg-page;
+  color: $color-text-primary;
+  font-size: $font-size-md;
+  border-radius: $radius-button;
+  font-weight: $font-weight-medium;
+
+  &:active {
+    background: $color-bg-hover;
+  }
+}
+
+.primaryBtn {
+  @include button-reset;
+  flex: 2;
+  height: $button-height-lg;
+  background: $gradient-primary;
+  color: $color-text-white;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-button;
+
+  &:active {
+    opacity: 0.85;
+  }
+}

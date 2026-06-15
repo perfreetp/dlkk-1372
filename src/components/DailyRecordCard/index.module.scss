@@ -1,0 +1,179 @@
+@use '@/styles/variables.scss' as *;
+
+.recordCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+  overflow: hidden;
+}
+
+.recordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 1rpx solid $color-divider;
+}
+
+.recordDate {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.recordTime {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.recordStatus {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.statusItem {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.statusIcon {
+  font-size: $font-size-md;
+}
+
+.recordBody {
+  padding: $spacing-lg;
+}
+
+.recordSection {
+  margin-bottom: $spacing-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sectionTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.sectionIcon {
+  font-size: $font-size-md;
+}
+
+.mealItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0;
+  border-bottom: 1rpx dashed $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mealTime {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+  width: 120rpx;
+}
+
+.mealInfo {
+  flex: 1;
+  margin: 0 $spacing-sm;
+}
+
+.mealFood {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.mealNote {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.mealAmount {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  white-space: nowrap;
+}
+
+.statsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.statItem {
+  flex: 1;
+  min-width: 140rpx;
+  text-align: center;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+}
+
+.statValue {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  margin-bottom: 4rpx;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.photos {
+  display: flex;
+  gap: $spacing-sm;
+  overflow-x: auto;
+}
+
+.photo {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: $radius-md;
+  flex-shrink: 0;
+  background: $color-bg-hover;
+}
+
+.recordNotes {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+}
+
+.recordFooter {
+  padding: $spacing-md $spacing-lg;
+  border-top: 1rpx solid $color-divider;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.staffInfo {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
